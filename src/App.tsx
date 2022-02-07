@@ -1,5 +1,5 @@
-import { Nav } from '@components/layout/Nav';
-import { MainPage } from '@pages/mainPage';
+import { Nav } from 'components/layout/Nav';
+import { MainPage } from 'pages/mainPage';
 
 const App = () => {
   return (
