@@ -23,7 +23,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "json-server": "json-server --watch server/db.json --port 8888",
+    "dev": "concurrently \"npm run json-server\" \"npm start\""
   },
   "eslintConfig": {
     "extends": [
@@ -48,5 +50,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1"
-  }
+  },
+  "proxy": "http://localhost:8888/"
 }
