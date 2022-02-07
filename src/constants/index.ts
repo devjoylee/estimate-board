@@ -3,4 +3,5 @@ export const COLOR = {
   BLUE_LIGHT: '#2196F3',
   TAG: '#FFA000',
   GRAY: '#939FA5',
+  BORDER: '#E5E5E5',
 };
