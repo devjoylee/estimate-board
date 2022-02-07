@@ -48,6 +48,10 @@ const EstimateItemContainer = styled.li`
   padding: 24px 16px;
   border: 1px solid ${COLOR.BORDER};
   border-radius: 4px;
+
+  &:hover {
+    outline: 2px solid ${COLOR.BLUE_LIGHT};
+  }
 `;
 
 const ItemHeader = styled.div`
@@ -90,9 +94,12 @@ const ItemDetail = styled.div`
 `;
 
 const DetailValue = styled.p`
-  margin-bottom: 10px;
   font-size: 14px;
   font-weight: 700;
+
+  & + p {
+    margin-top: 10px;
+  }
 
   span {
     display: inline-block;
