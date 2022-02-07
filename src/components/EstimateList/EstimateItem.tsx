@@ -5,13 +5,18 @@ import { Button } from './Button';
 
 interface itemProps {
   item: Estimate;
+  isChecked: boolean;
 }
 
-export const EstimateItem = ({ item }: itemProps) => {
+interface StyleProps {
+  isChecked: boolean;
+}
+
+export const EstimateItem = ({ item, isChecked }: itemProps) => {
   const { amount, client, count, due, material, method, status, title } = item;
 
   return (
-    <EstimateItemContainer>
+    <EstimateItemContainer className={status} isChecked={isChecked}>
       <ItemHeader>
         <h3>{title}</h3>
         <p>{client}</p>
@@ -44,13 +49,16 @@ export const EstimateItem = ({ item }: itemProps) => {
   );
 };
 
-const EstimateItemContainer = styled.li`
+const EstimateItemContainer = styled.li<StyleProps>`
   padding: 24px 16px;
   border: 1px solid ${COLOR.BORDER};
   border-radius: 4px;
 
   &:hover {
     outline: 2px solid ${COLOR.BLUE_LIGHT};
+  }
+  &.대기중 {
+    display: ${({ isChecked }) => (isChecked ? 'none' : 'block')};
   }
 `;
 

@@ -5,16 +5,17 @@ import { COLOR } from 'constants/';
 
 interface EstimateProps {
   apiData: Estimate[];
+  isChecked: boolean;
 }
 
-export const EstimateList = ({ apiData }: EstimateProps) => {
+export const EstimateList = ({ apiData, isChecked }: EstimateProps) => {
   return (
     <EstimateListContainer>
       {!apiData.length && (
         <NoEstimate>조건에 맞는 견적 요청이 없습니다.</NoEstimate>
       )}
       {apiData.map(item => (
-        <EstimateItem item={item} key={item.id} />
+        <EstimateItem item={item} key={item.id} isChecked={isChecked} />
       ))}
     </EstimateListContainer>
   );
