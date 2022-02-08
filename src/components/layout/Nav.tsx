@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { COLOR } from '../../constants';
+import { COLOR } from 'constants/';
 
 export const Nav = () => {
   return (
