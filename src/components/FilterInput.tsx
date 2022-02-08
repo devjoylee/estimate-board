@@ -22,7 +22,7 @@ export const FilterInput = ({
     }
   }, [clear]);
 
-  const handleClick = (e: any) => {
+  const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
     setClear(false);
     checkedRef.current = !checkedRef.current;
   };

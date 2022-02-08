@@ -53,7 +53,7 @@ export const Filter = ({ apiData, setCategories }: Props) => {
     setSelectMaterial([]);
   };
 
-  const handleBlur = (e: any, type: string) => {
+  const handleBlur = (e: React.FocusEvent<HTMLUListElement>, type: string) => {
     if (e.relatedTarget !== null) {
       return;
     }
