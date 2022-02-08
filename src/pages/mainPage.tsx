@@ -5,6 +5,7 @@ import { Toggle } from 'components/Toggle';
 import { fetcher } from 'utils/fetcher';
 import { COLOR } from 'constants/';
 import styled from 'styled-components';
+import { Filter } from 'components/Filter';
 
 export const MainPage = () => {
   const [apiData, setApiData] = useState<Estimate[]>([]);
@@ -24,7 +25,7 @@ export const MainPage = () => {
         <span>파트너님에게 딱 맞는 요청서를 찾아보세요.</span>
       </MainHeader>
       <OptionContainer>
-        <div>filter</div>
+        <Filter apiData={apiData} />
         <Toggle isChecked={isChecked} setIsChecked={setIsChecked} />
       </OptionContainer>
       <EstimateList apiData={apiData} isChecked={isChecked} />
