@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { EstimateList } from 'components/EstimateList';
 import { Estimate } from 'types/card';
 import { Toggle } from 'components/Toggle';
-import { fetcher } from 'utils/fetcher';
 import { COLOR, Device } from 'constants/';
 import styled from 'styled-components';
 import { Filter } from 'components/Filter';
@@ -18,7 +17,7 @@ export const MainPage = () => {
 
   useEffect(() => {
     (async function fetchData() {
-      const data = await fetcher();
+      const data = await (await fetch('/requests')).json();
       setApiData(data);
     })();
   }, []);
