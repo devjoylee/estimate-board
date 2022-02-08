@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Estimate } from 'types/card';
 import { EstimateItem } from './';
-import { COLOR } from 'constants/';
+import { COLOR, Device } from 'constants/';
 import { Category } from 'types/category';
 import { useMemo } from 'react';
 import { getFilter } from 'utils/getFilter';
@@ -35,10 +35,13 @@ export const EstimateList = ({
 
 const EstimateListContainer = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 16px;
   margin-top: 30px;
   position: relative;
+  @media ${Device.small} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
 const NoEstimate = styled.div`
