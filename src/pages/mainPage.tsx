@@ -3,7 +3,7 @@ import { EstimateList } from 'components/EstimateList';
 import { Estimate } from 'types/card';
 import { Toggle } from 'components/Toggle';
 import { fetcher } from 'utils/fetcher';
-import { COLOR } from 'constants/';
+import { COLOR, Device } from 'constants/';
 import styled from 'styled-components';
 import { Filter } from 'components/Filter';
 import { Category } from 'types/category';
@@ -46,6 +46,13 @@ const OptionContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 40px 0 30px;
+  @media ${Device.small} {
+    flex-direction: column;
+    align-items: flex-start;
+    & > ul:first-child {
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 const PageContainer = styled.main`

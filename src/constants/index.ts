@@ -7,3 +7,15 @@ export const COLOR = {
   GRAY_LIGHT: '#C2C2C2',
   BORDER: '#E5E5E5',
 };
+
+const size = {
+  small: '800px',
+  medium: '900px',
+  large: '1200px',
+};
+
+export const Device = {
+  small: `(max-width: ${size.small})`,
+  medium: `(max-width: ${size.medium})`,
+  large: `(max-width: ${size.large})`,
+};

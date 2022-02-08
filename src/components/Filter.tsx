@@ -24,7 +24,7 @@ export const Filter = ({ apiData, setCategories }: Props) => {
 
   useEffect(() => {
     setCategories({ method: selectMethod, material: selectMaterial });
-  }, [selectMethod, selectMaterial]);
+  }, [selectMethod, selectMaterial, setCategories]);
 
   const onCheckMethod = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newSelected;
@@ -102,10 +102,12 @@ export const Filter = ({ apiData, setCategories }: Props) => {
           </ListUl>
         )}
       </FilterUl>
-      <FilterReset onClick={onReset}>
-        <img src={Refresh} alt="refreshIcon" />
-        필터링 리셋
-      </FilterReset>
+      {(selectMethod.length > 0 || selectMaterial.length > 0) && (
+        <FilterReset onClick={onReset}>
+          <img src={Refresh} alt="refreshIcon" />
+          필터링 리셋
+        </FilterReset>
+      )}
     </FilterBox>
   );
 };
