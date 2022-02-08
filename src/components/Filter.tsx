@@ -1,22 +1,30 @@
 import { COLOR } from 'constants/';
 import { Refresh } from 'images';
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Estimate } from 'types/card';
+import { Category } from 'types/category';
+import { FilterInput } from './FilterInput';
 
 interface Props {
   apiData: Estimate[];
+  setCategories: Dispatch<SetStateAction<Category>>;
 }
 
-export const Filter = ({ apiData }: Props) => {
+export const Filter = ({ apiData, setCategories }: Props) => {
   const methodArr = apiData.map(data => data.method).flat(Infinity);
   const materialArr = apiData.map(data => data.material).flat(Infinity);
   const methodSet = Array.from(new Set(methodArr));
   const materialSet = Array.from(new Set(materialArr));
-  const [method, setMethod] = useState(false);
-  const [material, setMaterial] = useState(false);
   const [selectMethod, setSelectMethod] = useState<string[]>([]);
   const [selectMaterial, setSelectMaterial] = useState<string[]>([]);
+  const [method, setMethod] = useState(false);
+  const [material, setMaterial] = useState(false);
+  const [clear, setClear] = useState(false);
+
+  useEffect(() => {
+    setCategories({ method: selectMethod, material: selectMaterial });
+  }, [selectMethod, selectMaterial]);
 
   const onCheckMethod = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newSelected;
@@ -45,6 +53,7 @@ export const Filter = ({ apiData }: Props) => {
     setMaterial(!material);
   };
   const onReset = () => {
+    setClear(true);
     setSelectMethod([]);
     setSelectMaterial([]);
   };
@@ -61,14 +70,13 @@ export const Filter = ({ apiData }: Props) => {
         {method && (
           <ListUl>
             {methodSet.map((data, i) => (
-              <List key={`method-${i}`}>
-                <input
-                  onChange={e => onCheckMethod(e)}
-                  type="checkbox"
-                  id={`${data}`}
-                />
-                <label htmlFor={`${data}`}>{data}</label>
-              </List>
+              <FilterInput
+                key={`method-${i}`}
+                onCheck={onCheckMethod}
+                data={data}
+                clear={clear}
+                setClear={setClear}
+              />
             ))}
           </ListUl>
         )}
@@ -82,15 +90,14 @@ export const Filter = ({ apiData }: Props) => {
         </Select>
         {material && (
           <ListUl>
-            {materialSet.map((material, i) => (
-              <List key={`material-${i}`}>
-                <input
-                  onChange={e => onCheckMaterial(e)}
-                  type="checkbox"
-                  id={`${material}`}
-                />
-                <label htmlFor={`${material}`}>{material}</label>
-              </List>
+            {materialSet.map((data, i) => (
+              <FilterInput
+                key={`material-${i}`}
+                onCheck={onCheckMaterial}
+                data={data}
+                clear={clear}
+                setClear={setClear}
+              />
             ))}
           </ListUl>
         )}
@@ -168,16 +175,6 @@ const ListUl = styled.ul`
   border-radius: 4px;
   background-color: #fff;
   z-index: 100;
-`;
-const List = styled.li`
-  display: flex;
-  margin: 5px 0;
-  label {
-    flex: 1;
-    cursor: pointer;
-    font-size: 14px;
-    line-height: 1.2;
-  }
 `;
 
 const FilterReset = styled.li`

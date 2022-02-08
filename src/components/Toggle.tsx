@@ -1,5 +1,3 @@
-import React, { SetStateAction } from 'react';
-import { Estimate } from 'types/card';
 import { COLOR } from 'constants/';
 import styled from 'styled-components';
 

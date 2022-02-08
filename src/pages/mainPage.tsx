@@ -6,10 +6,15 @@ import { fetcher } from 'utils/fetcher';
 import { COLOR } from 'constants/';
 import styled from 'styled-components';
 import { Filter } from 'components/Filter';
+import { Category } from 'types/category';
 
 export const MainPage = () => {
   const [apiData, setApiData] = useState<Estimate[]>([]);
   const [isChecked, setIsChecked] = useState(false);
+  const [categories, setCategories] = useState<Category>({
+    method: [],
+    material: [],
+  });
 
   useEffect(() => {
     (async function fetchData() {
@@ -25,10 +30,14 @@ export const MainPage = () => {
         <span>파트너님에게 딱 맞는 요청서를 찾아보세요.</span>
       </MainHeader>
       <OptionContainer>
-        <Filter apiData={apiData} />
+        <Filter apiData={apiData} setCategories={setCategories} />
         <Toggle isChecked={isChecked} setIsChecked={setIsChecked} />
       </OptionContainer>
-      <EstimateList apiData={apiData} isChecked={isChecked} />
+      <EstimateList
+        apiData={apiData}
+        isChecked={isChecked}
+        categories={categories}
+      />
     </PageContainer>
   );
 };
