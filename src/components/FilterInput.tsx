@@ -19,6 +19,7 @@ export const FilterInput = ({
   const checkedRef = useRef(false);
   useEffect(() => {
     if (clear === true) {
+      checkedRef.current = false;
     }
   }, [clear]);
 
