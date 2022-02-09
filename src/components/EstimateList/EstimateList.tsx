@@ -39,6 +39,9 @@ const EstimateListContainer = styled.ul`
   grid-gap: 16px;
   margin-top: 30px;
   position: relative;
+  @media ${Device.medium} {
+    grid-template-columns: repeat(2, 1fr);
+  }
   @media ${Device.small} {
     grid-template-columns: repeat(1, 1fr);
   }

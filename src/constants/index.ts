@@ -10,8 +10,8 @@ export const COLOR = {
 
 const size = {
   small: '800px',
-  medium: '900px',
-  large: '1200px',
+  medium: '1200px',
+  large: '1400px',
 };
 
 export const Device = {
