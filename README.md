@@ -66,6 +66,7 @@ npm start
 
 - Stack
     - React Hooks
+    - TypeScript
     - styled-components
     - fetch / json-server
     - Deploy : Netilfy
