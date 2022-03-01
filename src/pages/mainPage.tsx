@@ -4,8 +4,9 @@ import { Estimate } from 'types/card';
 import { Toggle } from 'components/Toggle';
 import { COLOR, DEVICE } from 'constants/';
 import styled from 'styled-components';
-import { Filter } from 'components/Filter';
 import { Category } from 'types/category';
+import { Filter } from 'components/Filter';
+import { FilterList } from 'components/FilterList';
 
 export const MainPage = () => {
   const [apiData, setApiData] = useState<Estimate[]>([]);
@@ -29,7 +30,7 @@ export const MainPage = () => {
         <span>파트너님에게 딱 맞는 요청서를 찾아보세요.</span>
       </MainHeader>
       <OptionContainer>
-        <Filter apiData={apiData} setCategories={setCategories} />
+        <FilterList apiData={apiData} setCategories={setCategories} />
         <Toggle isChecked={isChecked} setIsChecked={setIsChecked} />
       </OptionContainer>
       <EstimateList

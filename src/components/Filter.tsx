@@ -4,6 +4,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Estimate } from 'types/card';
 import { Category } from 'types/category';
+import { getOptionList } from 'utils/getOptionList';
 import { FilterInput } from './FilterInput';
 
 interface Props {
@@ -12,10 +13,9 @@ interface Props {
 }
 
 export const Filter = ({ apiData, setCategories }: Props) => {
-  const methodArr = apiData.map(data => data.method).flat(Infinity);
-  const materialArr = apiData.map(data => data.material).flat(Infinity);
-  const methodSet = Array.from(new Set(methodArr));
-  const materialSet = Array.from(new Set(materialArr));
+  const methodOptions = getOptionList(apiData, 'method');
+  const materialOptions = getOptionList(apiData, 'material');
+
   const [selectMethod, setSelectMethod] = useState<string[]>([]);
   const [selectMaterial, setSelectMaterial] = useState<string[]>([]);
   const [isMethodOpen, setIsMethodOpen] = useState(false);
@@ -71,7 +71,7 @@ export const Filter = ({ apiData, setCategories }: Props) => {
           가공방식{selectMethod.length > 0 && `(${selectMethod.length})`}
         </Select>
         <MethodUl className={isMethodOpen ? 'active' : ''}>
-          {methodSet.map((data, i) => (
+          {methodOptions.map((data, i) => (
             <FilterInput
               key={`method-${i}`}
               onCheck={handleCheck}
@@ -91,7 +91,7 @@ export const Filter = ({ apiData, setCategories }: Props) => {
           재료{selectMaterial.length > 0 && `(${selectMaterial.length})`}
         </Select>
         <MaterialUl className={isMaterialOpen ? 'active' : ''}>
-          {materialSet.map((data, i) => (
+          {materialOptions.map((data, i) => (
             <FilterInput
               key={`material-${i}`}
               onCheck={handleCheck}

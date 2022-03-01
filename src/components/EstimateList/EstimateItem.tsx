@@ -3,7 +3,7 @@ import { Estimate } from 'types/card';
 import { COLOR } from 'constants/';
 import { Button } from './Button';
 
-interface itemProps {
+interface EstimateItemProps {
   item: Estimate;
   isChecked: boolean;
 }
@@ -12,7 +12,7 @@ interface StyleProps {
   isChecked: boolean;
 }
 
-export const EstimateItem = ({ item, isChecked }: itemProps) => {
+export const EstimateItem = ({ item, isChecked }: EstimateItemProps) => {
   const { amount, client, count, due, material, method, status, title } = item;
 
   return (

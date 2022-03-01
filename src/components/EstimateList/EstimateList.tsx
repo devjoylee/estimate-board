@@ -6,7 +6,7 @@ import { Category } from 'types/category';
 import { useMemo } from 'react';
 import { getFilter } from 'utils/getFilter';
 
-interface EstimateProps {
+interface EstimateListProps {
   apiData: Estimate[];
   isChecked: boolean;
   categories: Category;
@@ -16,7 +16,7 @@ export const EstimateList = ({
   apiData,
   isChecked,
   categories,
-}: EstimateProps) => {
+}: EstimateListProps) => {
   const newApiData = useMemo(() => {
     return getFilter(apiData, categories);
   }, [apiData, categories]);
