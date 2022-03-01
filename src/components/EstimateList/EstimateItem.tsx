@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Estimate } from 'types/card';
+import { Estimate } from 'types';
 import { COLOR } from 'constants/';
 import { Button } from './Button';
 

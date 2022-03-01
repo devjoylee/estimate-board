@@ -1,32 +1,20 @@
 import styled from 'styled-components';
-import { Estimate } from 'types/card';
-import { EstimateItem } from './';
+import { Estimate } from 'types';
 import { COLOR, DEVICE } from 'constants/';
-import { Category } from 'types/category';
-import { useMemo } from 'react';
-import { getFilter } from 'utils/getFilter';
+import { EstimateItem } from './EstimateItem';
 
 interface EstimateListProps {
-  apiData: Estimate[];
+  list: Estimate[];
   isChecked: boolean;
-  categories: Category;
 }
 
-export const EstimateList = ({
-  apiData,
-  isChecked,
-  categories,
-}: EstimateListProps) => {
-  const newApiData = useMemo(() => {
-    return getFilter(apiData, categories);
-  }, [apiData, categories]);
-
+export const EstimateList = ({ list, isChecked }: EstimateListProps) => {
   return (
     <EstimateListContainer>
-      {!newApiData.length && (
+      {!list.length && (
         <NoEstimate>조건에 맞는 견적 요청이 없습니다.</NoEstimate>
       )}
-      {newApiData.map(item => (
+      {list.map(item => (
         <EstimateItem item={item} key={item.id} isChecked={isChecked} />
       ))}
     </EstimateListContainer>

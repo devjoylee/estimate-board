@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { EstimateList } from 'components/EstimateList';
-import { Estimate } from 'types/card';
-import { Toggle } from 'components/Toggle';
+import { useEffect, useMemo, useState } from 'react';
+import { Estimate, Category } from 'types';
 import { COLOR, DEVICE } from 'constants/';
+import { EstimateList, FilterList, Toggle } from 'components';
 import styled from 'styled-components';
-import { Category } from 'types/category';
-import { Filter } from 'components/Filter';
-import { FilterList } from 'components/FilterList';
+import { filterData } from 'utils/filterData';
 
 export const MainPage = () => {
   const [apiData, setApiData] = useState<Estimate[]>([]);
@@ -17,11 +14,16 @@ export const MainPage = () => {
   });
 
   useEffect(() => {
-    (async function fetchData() {
-      const data = await (await fetch('/requests')).json();
-      setApiData(data);
-    })();
+    const fetchData = async () => {
+      const data = await fetch('/requests');
+      setApiData(await data.json());
+    };
+    fetchData();
   }, []);
+
+  const filteredList = useMemo(() => {
+    return filterData(apiData, categories);
+  }, [apiData, categories]);
 
   return (
     <PageContainer>
@@ -30,14 +32,14 @@ export const MainPage = () => {
         <span>파트너님에게 딱 맞는 요청서를 찾아보세요.</span>
       </MainHeader>
       <OptionContainer>
-        <FilterList apiData={apiData} setCategories={setCategories} />
+        <FilterList
+          apiData={apiData}
+          categories={categories}
+          setCategories={setCategories}
+        />
         <Toggle isChecked={isChecked} setIsChecked={setIsChecked} />
       </OptionContainer>
-      <EstimateList
-        apiData={apiData}
-        isChecked={isChecked}
-        categories={categories}
-      />
+      <EstimateList list={filteredList} isChecked={isChecked} />
     </PageContainer>
   );
 };

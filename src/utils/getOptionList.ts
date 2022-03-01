@@ -1,4 +1,4 @@
-import { Estimate } from 'types/card';
+import { Estimate } from 'types';
 
 export const getOptionList = (
   apiData: Estimate[],
