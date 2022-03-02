@@ -51,8 +51,8 @@ const OptionContainer = styled.div`
   @media ${DEVICE.SMALL} {
     flex-direction: column;
     align-items: flex-start;
-    & > ul:first-child {
-      margin-bottom: 20px;
+    & > div:first-child {
+      margin-bottom: 30px;
     }
   }
 `;

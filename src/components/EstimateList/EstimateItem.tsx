@@ -16,7 +16,10 @@ export const EstimateItem = ({ item, isChecked }: EstimateItemProps) => {
   const { amount, client, count, due, material, method, status, title } = item;
 
   return (
-    <EstimateItemContainer className={status} isChecked={isChecked}>
+    <EstimateItemContainer
+      className={status === '상담중' ? 'active' : 'pending'}
+      isChecked={isChecked}
+    >
       <ItemHeader>
         <h3>{title}</h3>
         <p>{client}</p>
@@ -57,7 +60,7 @@ const EstimateItemContainer = styled.li<StyleProps>`
   &:hover {
     outline: 2px solid ${COLOR.BLUE_LIGHT};
   }
-  &.대기중 {
+  &.pending {
     display: ${({ isChecked }) => (isChecked ? 'none' : 'block')};
   }
 `;

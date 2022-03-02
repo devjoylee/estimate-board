@@ -37,7 +37,7 @@ export const FilterList = ({
         clear={clear}
         setClear={setClear}
       />
-      {categories && (
+      {(categories.method.length > 0 || categories.material.length > 0) && (
         <FilterReset onClick={handleReset}>
           <img src={Refresh} alt="refreshIcon" />
           필터링 리셋
