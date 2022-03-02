@@ -4,8 +4,13 @@ export interface Estimate {
   count: number;
   due: string;
   id: number;
-  material: [];
-  method: [];
+  material: string[];
+  method: string[];
   status: string;
   title: string;
+}
+
+export interface Category {
+  method: string[];
+  material: string[];
 }

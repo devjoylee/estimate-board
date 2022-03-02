@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Estimate } from 'types/card';
+import { Estimate } from 'types';
 import { COLOR } from 'constants/';
 import { Button } from './Button';
 
-interface itemProps {
+interface EstimateItemProps {
   item: Estimate;
   isChecked: boolean;
 }
@@ -12,11 +12,14 @@ interface StyleProps {
   isChecked: boolean;
 }
 
-export const EstimateItem = ({ item, isChecked }: itemProps) => {
+export const EstimateItem = ({ item, isChecked }: EstimateItemProps) => {
   const { amount, client, count, due, material, method, status, title } = item;
 
   return (
-    <EstimateItemContainer className={status} isChecked={isChecked}>
+    <EstimateItemContainer
+      className={status === '상담중' ? 'active' : 'pending'}
+      isChecked={isChecked}
+    >
       <ItemHeader>
         <h3>{title}</h3>
         <p>{client}</p>
@@ -57,7 +60,7 @@ const EstimateItemContainer = styled.li<StyleProps>`
   &:hover {
     outline: 2px solid ${COLOR.BLUE_LIGHT};
   }
-  &.대기중 {
+  &.pending {
     display: ${({ isChecked }) => (isChecked ? 'none' : 'block')};
   }
 `;

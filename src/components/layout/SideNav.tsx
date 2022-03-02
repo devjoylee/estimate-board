@@ -1,18 +1,19 @@
 import { COLOR } from 'constants/';
 import { BuildingBlack, ColorLogo } from 'images';
-import { Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
-interface Props {
+interface SideNavProps {
   isOpen: boolean;
-  handleOpen: Dispatch<SetStateAction<boolean>>;
+  handleOpen: () => void;
 }
+
 interface StyleProps {
   isOpen: boolean;
 }
-export const SideNav = ({ isOpen, handleOpen }: Props) => {
+
+export const SideNav = ({ isOpen, handleOpen }: SideNavProps) => {
   return (
-    <SideContainer onClick={() => handleOpen(prev => !prev)} isOpen={isOpen}>
+    <SideContainer onClick={handleOpen} isOpen={isOpen}>
       <SideUl onClick={e => e.stopPropagation()} isOpen={isOpen}>
         <LogoBox>
           <img src={ColorLogo} alt="colorLogo" />
@@ -29,8 +30,8 @@ export const SideNav = ({ isOpen, handleOpen }: Props) => {
 
 const SideContainer = styled.nav<StyleProps>`
   position: fixed;
-  opacity: ${props => (props.isOpen ? '1' : '0')};
-  visibility: ${props => (props.isOpen ? 'visible' : 'hidden')};
+  opacity: ${({ isOpen }) => (isOpen ? '1' : '0')};
+  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   top: 0;
   width: 100vw;
   height: 100vh;
@@ -42,7 +43,7 @@ const SideContainer = styled.nav<StyleProps>`
 
 const SideUl = styled.ul<StyleProps>`
   position: fixed;
-  left: ${props => (props.isOpen ? '0' : '-100%')};
+  left: ${({ isOpen }) => (isOpen ? '0' : '-100%')};
   width: 80vw;
   height: 100%;
   transition: all 0.3s ease-in;
